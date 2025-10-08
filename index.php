@@ -7,7 +7,7 @@ $parsed = parse_url($_SERVER['REQUEST_URI']);
 //var_dump($parsed);
 $path = $parsed['path'];
 
-//útvonal választó
+//útvonal választó (valuta)
 switch ($path) {
     case $mappa . "/":
 
@@ -24,20 +24,25 @@ switch ($path) {
         $valutak = json_decode(file_get_contents($url), true);
         $vegeredmeny = $mennyit * $atvaltoTablazat['rates'][$mire];
 
-        require('./view/valutatvalto.php');
+        require('./view/valutavalto.php');
+        break;
+
+    case $mappa . "/hosszvalto":
+        $mennyit = (int) ($_GET['mennyit'] ?? 1);
+        $mirol = $_GET['mirol'] ?? "mm";
+        $mire = $_GET['mire'] ?? 'm';
+
+        $url = "http://localhost:3000/mertekegysegek/$mirol";
+        $atvaltoTablazat = json_decode(file_get_contents($url), true);
+        $url = "http://localhost:3000/mertekegysegek";
+        $hosszusag = json_decode(file_get_contents($url), true);
+        $vegeredmeny = $mennyit * $atvaltoTablazat['rates'][$mire];
+
+        require('./view/hosszvalto.php');
         break;
 
     default:
-        # code...
         require('./view/404.php');
         break;
 }
-
-
-
-
-
-
-
-
 ?>
