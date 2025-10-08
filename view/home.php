@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    hj
     <h1>Főoldal</h1>
     <p><a href="<?php echo $mappa . "/valutavalto" ?>">Pénzváltó</a></p>
     <p><a href="<?php echo $mappa . "/hosszvalto" ?>">Hosszváltó</a></p>
