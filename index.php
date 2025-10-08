@@ -1,6 +1,5 @@
 <?php
-
-$mappa = "/projektek/06_MertekegysegValto";
+$mappa = "/projektek/06_Hosszvalto";
 //Útvonal (route) választó (router)
 
 $parsed = parse_url($_SERVER['REQUEST_URI']);
@@ -13,6 +12,7 @@ switch ($path) {
 
         require('./view/home.php');
         break;
+
     case $mappa . "/valutavalto":
         $mennyit = (int) ($_GET['mennyit'] ?? 1);
         $mirol = $_GET['mirol'] ?? "USD";
@@ -29,14 +29,14 @@ switch ($path) {
 
     case $mappa . "/hosszvalto":
         $mennyit = (int) ($_GET['mennyit'] ?? 1);
-        $mirol = $_GET['mirol'] ?? "mm";
-        $mire = $_GET['mire'] ?? 'm';
+        $mirol = $_GET['mirol'] ?? "m";
+        $mire = $_GET['mire'] ?? 'cm';
 
-        $url = "http://localhost:3000/mertekegysegek/$mirol";
-        $atvaltoTablazat = json_decode(file_get_contents($url), true);
-        $url = "http://localhost:3000/mertekegysegek";
-        $hosszusag = json_decode(file_get_contents($url), true);
-        $vegeredmeny = $mennyit * $atvaltoTablazat['rates'][$mire];
+        $url = "http://localhost:3000/hosszusag/$mirol";
+        $hosszvaltoTablazat = json_decode(file_get_contents($url), true);
+        $url = "http://localhost:3000/hosszusag";
+        $hosszvalto = json_decode(file_get_contents($url), true);
+        $vegeredmeny = $mennyit * $hosszvaltoTablazat['rates'][$mire];
 
         require('./view/hosszvalto.php');
         break;

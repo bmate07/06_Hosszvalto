@@ -16,30 +16,33 @@
             <div class="card-body">
                 <h1 class="card-title mb-3">Hosszvalto</h1>
                 <form action="">
+
                     <!-- Mennyit -->
                     <div class="mt-3 d-flex align-items-center">
                         <label for="mennyit" class="form-label m-0">Mennyi: </label>
                         <input type="number" class="form-control ms-2" name="mennyit" id="mennyit"
                             value="<?php echo $mennyit ?>">
                     </div>
+
                     <!-- Miről -->
                     <div class="mt-2 d-flex align-items-center">
                         <label for="mirol" class="form-label m-0">Miről:</label>
                         <select class="form-select ms-2" aria-label="Default select example" id="mirol" name="mirol">
                             <?php foreach ($hosszvalto as $hossz) { ?>
-                                <option value="<?php echo $hossz['id'] ?>" <?php echo ($mirol === $hossz['id'] ? "selected" : "") ?>>
-                                    <?php echo $hossz['rates'] . " (" . $hossz['id'] . ")" ?>
+                                <option value="<?php echo $hossz['id'] ?>" <?php echo $mirol === $hossz['id'] ? "selected" : "" ?>>
+                                    <?php echo $hossz['id'] ?>
                                 </option>
                             <?php } ?>
                         </select>
                     </div>
+
                     <!-- Mire -->
                     <div class="mt-2 d-flex align-items-center">
                         <label for="mire" class="form-label m-0">Mire:</label>
                         <select class="form-select ms-2" aria-label="Default select example" id="mire" name="mire">
                             <?php foreach ($hosszvalto as $hossz) { ?>
                                 <option value="<?php echo $hossz['id'] ?>" <?php echo ($mire === $hossz['id'] ? "selected" : "") ?>>
-                                    <?php echo $hossz['rates'] . " (" . $hossz['id'] . ")" ?>
+                                    <?php echo $hossz['id'] ?>
                                 </option>
                             <?php } ?>
                         </select>
